@@ -1,13 +1,21 @@
 <template>
     <main class="my_main">
-        <div class="container">
+
+
+        <div class="container position-relative">
+
+            <!-- Component per caricamento in corso -->
+            <myLoad :loadInProgress="loadInProgress"/>
+
             <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2">
                 <div class="col" v-for="(vinyl,index) in vinylArrayObj" :key="index"  >
 
+                    <!-- component card -->
                     <myCard :vinyl="vinyl" />
-
+                   
                 </div>
             </div>
+
         </div>
     </main>
 </template>
@@ -17,6 +25,8 @@
 const axios = require('axios');
 
 import  myCard from './partials/myCard.vue'
+import  myLoad from './partials/myLoad.vue'
+
 
 export default {
     name:'myMain',
@@ -24,13 +34,19 @@ export default {
     components :{
 
         myCard,
+        myLoad
 
     },
 
     data(){
 
         return{
+
+            //Array ogetti vinili
             vinylArrayObj: [],
+
+            // boolean caricamento in corso
+            loadInProgress: true,
         }
 
     },
@@ -43,16 +59,22 @@ export default {
             .then((response) => {
                 // handle success
                 this.vinylArrayObj = response.data.response;
-                console.log(this.vinylArrayObj)
+
+                // Stop del loading in progress, metto il timeouta 300 millisecondi per farlo vedere
+                setTimeout(() => {
+                    
+                    this.loadInProgress=false;
+
+                }, 300);
+
+                console.log(this.vinylArrayObj);
                 console.log(response);
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             })
-            .then(function () {
-                // always executed
-            }); 
+
         }
     },
 
