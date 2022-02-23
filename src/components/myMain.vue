@@ -2,18 +2,9 @@
     <main class="my_main">
         <div class="container">
             <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2">
-                <div class="col" v-for="(vinyl,index) in vinylArrayObj" :key="index">
+                <div class="col" v-for="(vinyl,index) in vinylArrayObj" :key="index"  >
 
-                    <div class="my_card">
-                        <div class="my_card-img">
-                            <img :src="vinyl.poster" alt="vinyl-poster">
-                        </div>
-                        <div class="my_card-text text-center">
-                            <h6 class="text-white text-uppercase">{{vinyl.title}}</h6>
-                            <span class="text-secondary d-block">{{vinyl.author}}</span>
-                            <span class="text-secondary">{{vinyl.year}}</span>
-                        </div>
-                    </div>
+                    <myCard :vinyl="vinyl" />
 
                 </div>
             </div>
@@ -25,8 +16,16 @@
 // Integro axios
 const axios = require('axios');
 
+import  myCard from './partials/myCard.vue'
+
 export default {
     name:'myMain',
+
+    components :{
+
+        myCard,
+
+    },
 
     data(){
 
@@ -96,7 +95,7 @@ export default {
 
 @media screen and (min-width: 993px){
     .my_main{
-        height: 100vh;
+        height: calc(100vh - 50px);
     }
 }
 
