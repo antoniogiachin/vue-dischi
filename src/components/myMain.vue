@@ -91,6 +91,7 @@ export default {
     display: flex;
     align-items: center;
     overflow: scroll;
+    padding: 20px 0px;
 }
 
 .my_card{
