@@ -40,7 +40,9 @@ export default {
 
     props: {
 
-        "currentGenreValue" : String
+        "currentGenreValue" : String,
+
+        "currentAuthorValue" : String
     },
 
     data(){
@@ -123,7 +125,9 @@ export default {
         listVinylFiltered(){
 
             return  this.vinylArrayObj.filter(item =>{
+
                 return item.genre.includes(this.currentGenreValue);
+                
             });
 
         }

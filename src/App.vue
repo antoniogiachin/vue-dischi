@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <myHeader @valoreGenereCorrente="genreValue" :vinylGenreCopy="vinylGenreCopy" :vinylAuthorsCopy="vinylAuthorsCopy"/>
+    <myHeader @valoreGenereCorrente="genreValue" @valoreAutoreCorrente="authorValue" :vinylGenreCopy="vinylGenreCopy" :vinylAuthorsCopy="vinylAuthorsCopy"/>
     <myMain @arrayGeneri="copiaGeneri" @arrayAutori="copiaAutori" :currentGenreValue="currentGenreValue" :currentAuthorValue="currentAuthorValue"/>
   </div>
 </template>
