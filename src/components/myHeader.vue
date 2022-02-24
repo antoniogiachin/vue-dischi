@@ -11,9 +11,13 @@
                 </a>
 
                 <select name="genre-select" id="genre" class="float-end d-inline-block">
-                    <!-- da dinamicizzare -->
-                    <option value="">Scegli il genere musicale</option>
-                    <option value="genere1">Genere 1</option>
+                    <option value="">Seleziona il genere musicale</option>
+                    <option v-for="(genre, index) in vinylGenreCopy " :key="index" :value="genre">{{genre}}</option>
+                </select>
+
+                <select name="genre-select" id="genre" class="float-end d-inline-block">
+                    <option value="">Seleziona l'artista</option>
+                    <option v-for="(author, index) in vinylAuthorsCopy " :key="index" :value="author">{{author}}</option>
                 </select>
 
             </div>
@@ -31,7 +35,14 @@ export default {
         return{
             img: require("../assets/soundcloud.png")
         }
-    }
+    },
+
+    props: {
+        "vinylGenreCopy" : Array,
+
+        "vinylAuthorsCopy" : Array,
+
+    },
 }
 </script>
 

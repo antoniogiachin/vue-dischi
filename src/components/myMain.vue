@@ -8,7 +8,7 @@
             <myLoad :loadInProgress="loadInProgress"/>
 
             <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2">
-                <div class="col" v-for="(vinyl,index) in vinylArrayObj" :key="index"  >
+                <div class="col" v-for="(vinyl,index) in vinylArrayObj" :key="index" @click="getArrayGenre()" >
 
                     <!-- component card -->
                     <myCard :vinyl="vinyl" />
@@ -47,6 +47,12 @@ export default {
 
             // boolean caricamento in corso
             loadInProgress: true,
+
+            // array generi
+            vinylGenreArray: [],
+
+            // array di artisti
+            vinylAuthorsArray: [],
         }
 
     },
@@ -60,6 +66,27 @@ export default {
                 // handle success
                 this.vinylArrayObj = response.data.response;
 
+                // Creo array di generi
+                this.vinylArrayObj.forEach(value =>{
+                    if(!this.vinylGenreArray.includes(value.genre)){
+                        this.vinylGenreArray.push(value.genre);
+                    }
+                });
+
+                // creo ascoltatore eventi array generi
+                this.$emit('arrayGeneri', this.vinylGenreArray);
+
+                // Creo array artist
+                this.vinylArrayObj.forEach(value =>{
+                    if(!this.vinylAuthorsArray.includes(value.author)){
+                        this.vinylAuthorsArray.push(value.author);
+                    }
+                })
+
+                // creo ascoltatore eventi array autori
+                this.$emit('arrayAutori', this.vinylAuthorsArray);
+
+
                 // Stop del loading in progress, metto il timeouta 300 millisecondi per farlo vedere
                 setTimeout(() => {
                     
@@ -68,6 +95,8 @@ export default {
                 }, 300);
 
                 console.log(this.vinylArrayObj);
+                console.log(this.vinylGenreArray);
+                console.log(this.vinylAuthorsArray);
                 console.log(response);
             })
             .catch(function (error) {
@@ -75,12 +104,14 @@ export default {
                 console.log(error);
             })
 
-        }
+        },
+
     },
 
     created(){
-        this.getArrayObj()
-    }
+        this.getArrayObj();
+    },
+
 }
 </script>
 
