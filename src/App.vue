@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <myHeader :vinylGenreCopy="vinylGenreCopy" :vinylAuthorsCopy="vinylAuthorsCopy"/>
-    <myMain @arrayGeneri="copiaGeneri" @arrayAutori="copiaAutori"/>
+    <myHeader @valoreGenereCorrente="genreValue" :vinylGenreCopy="vinylGenreCopy" :vinylAuthorsCopy="vinylAuthorsCopy"/>
+    <myMain @arrayGeneri="copiaGeneri" @arrayAutori="copiaAutori" :currentGenreValue="currentGenreValue" :currentAuthorValue="currentAuthorValue"/>
   </div>
 </template>
 
@@ -21,9 +21,17 @@ export default {
   data(){
     return {
 
+      // copia array generi
       vinylGenreCopy: [],
 
+      // copia array autori
       vinylAuthorsCopy: [],
+
+      // stringa valore genere corrente
+      currentGenreValue: '',
+
+      //stringa valore autore corrente
+      currentAuthorValue: '',
 
     }
   },
@@ -38,7 +46,19 @@ export default {
     copiaAutori(array){
       this.vinylAuthorsCopy = array;
       console.log(this.vinylAuthorsCopy)
-    }
+    },
+
+    // funzione valore genere
+    genreValue(value){
+      this.currentGenreValue = value;
+      console.log(this.currentGenreValue);
+    },
+
+    // funzione valore autore
+    authorValue(value){
+      this.currentAuthorValue = value;
+      console.log(this.currentAuthorValue);
+    },
 
   },
 

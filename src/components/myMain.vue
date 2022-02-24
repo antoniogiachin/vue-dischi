@@ -8,7 +8,7 @@
             <myLoad :loadInProgress="loadInProgress"/>
 
             <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2">
-                <div class="col" v-for="(vinyl,index) in vinylArrayObj" :key="index" @click="getArrayGenre()" >
+                <div class="col" v-for="(vinyl,index) in listVinylFiltered" :key="index" >
 
                     <!-- component card -->
                     <myCard :vinyl="vinyl" />
@@ -36,6 +36,11 @@ export default {
         myCard,
         myLoad
 
+    },
+
+    props: {
+
+        "currentGenreValue" : String
     },
 
     data(){
@@ -111,6 +116,18 @@ export default {
     created(){
         this.getArrayObj();
     },
+
+    computed:{
+
+        // filtro per autore in base al value ricevuto dal padre
+        listVinylFiltered(){
+
+            return  this.vinylArrayObj.filter(item =>{
+                return item.genre.includes(this.currentGenreValue);
+            });
+
+        }
+    }
 
 }
 </script>
