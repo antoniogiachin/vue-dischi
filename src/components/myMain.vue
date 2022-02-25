@@ -124,10 +124,16 @@ export default {
         // filtro per autore in base al value ricevuto dal padre
         listVinylFiltered(){
 
+            if(this.currentGenreValue == "" ){
+                return this.vinylArrayObj
+            } else {
+
+                return  this.vinylArrayObj.filter(item =>{
+                    return item.genre == (this.currentGenreValue) ||  item.author == (this.currentAuthorValue) ;                
+                });
+
+            }
             
-            return  this.vinylArrayObj.filter(item =>{
-                return item.genre.includes(this.currentGenreValue);                
-            });
 
         }
     }
