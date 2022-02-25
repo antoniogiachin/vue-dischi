@@ -124,7 +124,7 @@ export default {
         // filtro per autore in base al value ricevuto dal padre
         listVinylFiltered(){
 
-            if(this.currentGenreValue == "" ){
+            if(this.currentGenreValue == "" && this.currentAuthorValue == "" ){
                 return this.vinylArrayObj
             } else {
 
